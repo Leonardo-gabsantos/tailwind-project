@@ -537,6 +537,45 @@
         </div>
     </section>
 
+    <section class="py-20 bg-gradient-to-b from-black via-[#0f172a] to-black border-t border-white/10">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="rounded-3xl border border-white/10 bg-[#070b12]/90 p-6 sm:p-10 shadow-[0_0_40px_rgba(251,191,36,0.08)] backdrop-blur-xl">
+                <div class="text-center mb-8">
+                    <p class="text-xs font-mono uppercase tracking-[0.3em] text-amber-400">Sua opinião</p>
+                    <h2 class="mt-4 text-3xl sm:text-4xl font-black text-white tracking-tight">QUAL CARRO VOCÊ MAIS GOSTOU?</h2>
+                </div>
+
+                <form id="car-form" novalidate class="space-y-6">
+                    <div>
+                        <label for="car-select" class="block text-sm font-medium text-gray-300 mb-2">Escolha seu favorito</label>
+                        <select id="car-select" name="car" required class="w-full rounded-xl border border-amber-500/40 bg-[#0b1017] text-white px-4 py-3 shadow-inner shadow-black/30 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition appearance-none text-base" style="color-scheme: dark;">
+                            <option value="" selected disabled class="bg-[#0b1017] text-white">Selecione um modelo</option>
+                            <option value="Jesko Absolut" class="bg-[#0b1017] text-white">Jesko Absolut</option>
+                            <option value="Gemera" class="bg-[#0b1017] text-white">Gemera</option>
+                            <option value="Regera" class="bg-[#0b1017] text-white">Regera</option>
+                            <option value="CC850" class="bg-[#0b1017] text-white">CC850</option>
+                            <option value="Agera RS" class="bg-[#0b1017] text-white">Agera RS</option>
+                        </select>
+                        <p id="car-error" class="hidden mt-2 text-sm text-red-400">Por favor, selecione um carro.</p>
+                    </div>
+
+                    <div>
+                        <label for="car-message" class="block text-sm font-medium text-gray-300 mb-2">Por que ele chamou sua atenção?</label>
+                        <textarea id="car-message" name="message" rows="4" required minlength="10" placeholder="Conte o que mais te impressionou..." class="w-full rounded-xl border border-amber-500/30 bg-[#0b1017] text-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition resize-none shadow-inner shadow-black/25"></textarea>
+                        <p id="message-error" class="hidden mt-2 text-sm text-red-400">Escreva pelo menos 10 caracteres.</p>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
+                        <button type="submit" class="w-full sm:w-auto px-8 py-3 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-600 text-black font-extrabold uppercase tracking-wider text-sm shadow-glow-gold hover:opacity-95 transition-opacity">
+                            Enviar resposta
+                        </button>
+                        <p id="form-success" class="hidden text-sm font-medium text-emerald-400">Resposta enviada com sucesso!</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
     <!-- FOOTER -->
     <footer class="bg-black text-gray-400 border-t border-white/10 pt-16 pb-12 reveal-section">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -605,45 +644,6 @@
 
         </div>
     </footer>
-
-    <section class="py-20 bg-gradient-to-b from-black via-[#0f172a] to-black border-t border-white/10">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="rounded-3xl border border-white/10 bg-[#070b12]/90 p-6 sm:p-10 shadow-[0_0_40px_rgba(251,191,36,0.08)] backdrop-blur-xl">
-                <div class="text-center mb-8">
-                    <p class="text-xs font-mono uppercase tracking-[0.3em] text-amber-400">Sua opinião</p>
-                    <h2 class="mt-4 text-3xl sm:text-4xl font-black text-white tracking-tight">QUAL CARRO VOCÊ MAIS GOSTOU?</h2>
-                </div>
-
-                <form id="car-form" novalidate class="space-y-6">
-                    <div>
-                        <label for="car-select" class="block text-sm font-medium text-gray-300 mb-2">Escolha seu favorito</label>
-                        <select id="car-select" name="car" required class="w-full rounded-xl border border-amber-500/40 bg-[#0b1017] text-white px-4 py-3 shadow-inner shadow-black/30 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition appearance-none text-base" style="color-scheme: dark;">
-                            <option value="" selected disabled class="bg-[#0b1017] text-white">Selecione um modelo</option>
-                            <option value="Jesko Absolut" class="bg-[#0b1017] text-white">Jesko Absolut</option>
-                            <option value="Gemera" class="bg-[#0b1017] text-white">Gemera</option>
-                            <option value="Regera" class="bg-[#0b1017] text-white">Regera</option>
-                            <option value="CC850" class="bg-[#0b1017] text-white">CC850</option>
-                            <option value="Agera RS" class="bg-[#0b1017] text-white">Agera RS</option>
-                        </select>
-                        <p id="car-error" class="hidden mt-2 text-sm text-red-400">Por favor, selecione um carro.</p>
-                    </div>
-
-                    <div>
-                        <label for="car-message" class="block text-sm font-medium text-gray-300 mb-2">Por que ele chamou sua atenção?</label>
-                        <textarea id="car-message" name="message" rows="4" required minlength="10" placeholder="Conte o que mais te impressionou..." class="w-full rounded-xl border border-amber-500/30 bg-[#0b1017] text-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition resize-none shadow-inner shadow-black/25"></textarea>
-                        <p id="message-error" class="hidden mt-2 text-sm text-red-400">Escreva pelo menos 10 caracteres.</p>
-                    </div>
-
-                    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
-                        <button type="submit" class="w-full sm:w-auto px-8 py-3 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-600 text-black font-extrabold uppercase tracking-wider text-sm shadow-glow-gold hover:opacity-95 transition-opacity">
-                            Enviar resposta
-                        </button>
-                        <p id="form-success" class="hidden text-sm font-medium text-emerald-400">Resposta enviada com sucesso!</p>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </section>
 
     <script src="/static/script.js"></script>
     <script>
