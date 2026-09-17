@@ -1,35 +1,727 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hypercars - koenigsegg</title>
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Koenigsegg — Pinnacle of Automotive Engineering</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            400: '#facc15',
+                            500: '#eab308',
+                            600: '#ca8a04',
+                        },
+                        carbon: '#0b0f17',
+                        cardBg: 'rgba(18, 24, 38, 0.7)',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    boxShadow: {
+                        'glow-gold': '0 0 25px -5px rgba(234, 179, 8, 0.4)',
+                        'glow-subtle': '0 0 15px 0px rgba(255, 255, 255, 0.05)',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+    
+    <style>
+        /* Custom Carbon Fiber Texture Pattern */
+        .carbon-pattern {
+            background-color: #0b0d12;
+            background-image: 
+                radial-gradient(rgba(234, 179, 8, 0.08) 1px, transparent 0),
+                linear-gradient(45deg, #11151f 25%, transparent 25%, transparent 75%, #11151f 75%, #11151f),
+                linear-gradient(45deg, #11151f 25%, transparent 25%, transparent 75%, #11151f 75%, #11151f);
+            background-size: 30px 30px, 10px 10px, 10px 10px;
+            background-position: 0 0, 0 0, 5px 5px;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #090c10;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #222d3d;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ca8a04;
+        }
+    </style>
 </head>
-<body class="bg-slate-900 text-white p-6">
+<body class="bg-carbon text-gray-100 font-sans antialiased overflow-x-hidden selection:bg-gold-500 selection:text-black">
 
-<nav class="flex items-left justify-start gap-6">
-  
-  <!-- Lista de Links -->
-  <ul class="flex flex-row gap-16 list-none p-0 m-0">
-    <li><a href="#" class="text-white hover:text-gray-500 font-semibold transition-colors">Agera rs</a></li>
-    <li><a href="#" class="text-white hover:text-gray-500 font-semibold transition-colors">Jesko absolute</a></li>
-    <li><a href="#" class="text-white hover:text-gray-500 font-semibold transition-colors">One:1</a></li>
-    <li><a href="#" class="text-white hover:text-gray-500 font-semibold transition-colors">Regera</a></li>
-    <li><a href="#" class="text-white hover:text-gray-500 font-semibold transition-colors">CC850</a></li>
-  </ul>
-  
-  <!-- Ícone de Menu com 2 Barras -->
-    <button class="ml-auto text-white hover:text-gray-400 focus:outline-none cursor-pointer p-1 rounded transition-colors" aria-label="Menu">
-    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <!-- M4 8h16 (Barra superior) e M4 16h16 (Barra inferior) -->
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16"></path>
-    </svg>
-  </button>  
+    <!-- NAVIGATION BAR -->
+    <header class="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-black/60 border-b border-white/10 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <!-- Koenigsegg Crest Icon Simulation -->
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-yellow-600 via-amber-400 to-yellow-200 p-[1px] shadow-glow-gold transition-transform duration-300 group-hover:scale-110">
+                        <div class="w-full h-full bg-black rounded-full flex items-center justify-center">
+                            <span class="font-black text-amber-400 text-lg tracking-tighter">K</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-xl font-black tracking-[0.25em] text-white uppercase font-mono">KOENIGSEGG</span>
+                        <span class="text-[9px] tracking-[0.3em] text-amber-400 uppercase -mt-1 font-semibold">Ultimate Performance</span>
+                    </div>
+                </a>
 
-</nav>
+                <!-- Desktop Navigation Menu (Visible on lg: screen size >1024px) -->
+                <!-- RECURSO TAILWIND 1: Breakpoint Variants (hidden lg:flex) -->
+                <!-- RECURSO TAILWIND 2: Flexbox Layout -->
+                <nav class="hidden lg:flex items-center space-x-1 xl:space-x-2">
+                    <a href="#models" class="px-4 py-2 text-sm font-medium text-gray-300 hover:text-amber-400 transition-colors rounded-lg hover:bg-white/5">HYPERCARS</a>
+                    <a href="#engineering" class="px-4 py-2 text-sm font-medium text-gray-300 hover:text-amber-400 transition-colors rounded-lg hover:bg-white/5">ENGENHARIA</a>
+                    <a href="#simulator" class="px-4 py-2 text-sm font-medium text-gray-300 hover:text-amber-400 transition-colors rounded-lg hover:bg-white/5">SIMULADOR</a>
+                    <a href="#heritage" class="px-4 py-2 text-sm font-medium text-gray-300 hover:text-amber-400 transition-colors rounded-lg hover:bg-white/5">HISTÓRIA</a>
+                </nav>
 
-  <h1 class="text-2xl text-gray-400 mt-6">Koenigsegg it's an hypercar brand which makes the fastest's hypercars in the world</h1>
+                <!-- Mobile Hamburger Button (Visible on screens smaller than lg) -->
+                <!-- RECURSO TAILWIND: Display toggle on breakpoint -->
+                <button id="menu-btn" class="lg:hidden p-2.5 rounded-xl bg-white/5 border border-white/10 text-gray-300 hover:text-white hover:bg-white/10 focus:outline-none transition-colors" aria-label="Toggle Menu">
+                    <svg id="menu-icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16"></path>
+                    </svg>
+                    <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
 
+        <!-- Mobile Drawer Navigation Menu (Screen Size Adaptive Mode) -->
+        <!-- RECURSO TAILWIND 4: Glassmorphism & Backdrop Blur (backdrop-blur-xl bg-black/95) -->
+        <div id="mobile-menu" class="hidden lg:hidden backdrop-blur-xl bg-black/95 border-b border-amber-500/20 px-6 py-8 transition-all duration-300 shadow-2xl">
+            <div class="flex flex-col space-y-4">
+                <a href="#models" class="mobile-nav-link text-lg font-semibold text-gray-200 hover:text-amber-400 py-2 border-b border-white/5">Modelos Hypercar</a>
+                <a href="#engineering" class="mobile-nav-link text-lg font-semibold text-gray-200 hover:text-amber-400 py-2 border-b border-white/5">Engenharia Koenigsegg</a>
+                <a href="#simulator" class="mobile-nav-link text-lg font-semibold text-gray-200 hover:text-amber-400 py-2 border-b border-white/5">Simulador de Performance</a>
+                <a href="#heritage" class="mobile-nav-link text-lg font-semibold text-gray-200 hover:text-amber-400 py-2 border-b border-white/5">Legado & Inovação</a>
+                <div class="pt-4">
+                    <a href="#models" class="mobile-nav-link w-full block text-center py-3.5 px-6 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-600 text-black font-bold uppercase tracking-wider text-sm shadow-glow-gold">
+                        Agendar Apresentação
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden carbon-pattern reveal-section">
+        
+        <!-- Glowing Accent Background Spheres -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-amber-500/10 rounded-full blur-[140px] pointer-events-none"></div>
+        <div class="absolute bottom-10 right-10 w-[400px] h-[400px] bg-yellow-600/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10 w-full">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Hero Left Column: Main Typography & CTA -->
+                <div class="lg:col-span-7 space-y-8 text-center lg:text-left">
+                    
+                    <!-- Badge -->
+                    <!-- RECURSO TAILWIND 5: Ring & Border Utilities -->
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 ring-1 ring-amber-500/20 text-amber-400 text-xs font-mono uppercase tracking-widest">
+                        <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
+                        Engenharia Sueca Absoluta
+                    </div>
+
+                    <!-- Main Heading -->
+                    <!-- RECURSO TAILWIND 6: Typography Responsive Sizes -->
+                    <h1 class="text-4xl sm:text-6xl xl:text-7xl font-black tracking-tight text-white leading-none">
+                        REDEFININDO O <br/>
+                        <!-- RECURSO TAILWIND: Gradient Text Clip -->
+                        <span class="bg-gradient-to-r from-amber-300 via-yellow-500 to-amber-600 bg-clip-text text-transparent drop-shadow-sm">
+                            IMPOSSÍVEL
+                        </span>
+                    </h1>
+
+                    <p class="text-gray-400 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 font-light leading-relaxed">
+                        Projetados sem concessões. A Koenigsegg combina aerodinâmica extrema, transmissões revolucionárias e chassis em fibra de carbono para criar os hypercars mais velozes da Terra.
+                    </p>
+
+                    <!-- Interactive Quick Stats Row -->
+                    <!-- RECURSO TAILWIND 7: CSS Grid System (grid-cols-2 sm:grid-cols-3) -->
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-2 max-w-lg mx-auto lg:mx-0">
+                        <div class="p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md">
+                            <p class="text-xs text-gray-400 uppercase tracking-wider font-mono">Vel. Máxima</p>
+                            <p class="text-2xl sm:text-3xl font-black text-amber-400 mt-1">530+ <span class="text-xs font-normal text-gray-400">km/h</span></p>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md">
+                            <p class="text-xs text-gray-400 uppercase tracking-wider font-mono">Potência Max</p>
+                            <p class="text-2xl sm:text-3xl font-black text-amber-400 mt-1">1600 <span class="text-xs font-normal text-gray-400">CV</span></p>
+                        </div>
+                        <div class="col-span-2 sm:col-span-1 p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md">
+                            <p class="text-xs text-gray-400 uppercase tracking-wider font-mono">Proporção</p>
+                            <p class="text-2xl sm:text-3xl font-black text-amber-400 mt-1">1:1 <span class="text-xs font-normal text-gray-400">KG/CV</span></p>
+                        </div>
+                    </div>
+
+                    <!-- Call To Actions -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                        <a href="#models" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-600 text-black font-extrabold uppercase tracking-wider text-sm shadow-glow-gold hover:scale-105 transition-all duration-300 text-center">
+                            Explorar A Frota
+                        </a>
+                        <a href="#simulator" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/15 text-white font-semibold text-sm transition-all duration-300 text-center backdrop-blur-md flex items-center justify-center gap-2 group">
+                            <i class="fa-solid fa-gauge-high text-amber-400 group-hover:rotate-12 transition-transform"></i>
+                            Simular Desempenho
+                        </a>
+                    </div>
+
+                </div>
+
+                <!-- Hero Right Column: Hero Visual Showcase Card -->
+                <div class="lg:col-span-5 relative">
+                    <!-- RECURSO TAILWIND 8: Custom Hover & Glow Shadows (hover:shadow-glow-gold) -->
+                    <div class="relative rounded-3xl p-1 bg-gradient-to-b from-amber-500/30 via-white/10 to-transparent shadow-2xl transition-all duration-500 hover:shadow-glow-gold group">
+                        
+                        <div class="relative bg-cardBg backdrop-blur-xl rounded-[22px] overflow-hidden p-6 border border-white/10">
+                            
+                            <!-- Model Badge Tag -->
+                            <div class="flex justify-between items-center mb-4">
+                                <span class="text-xs font-mono uppercase tracking-widest text-amber-400 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">
+                                    Destaque do Mês
+                                </span>
+                                <span class="text-xs text-gray-400 font-mono">0-100 km/h em 2.5s</span>
+                            </div>
+
+                            <!-- Aspect Ratio Controlled Image Container -->
+                            <!-- RECURSO TAILWIND: aspect-video and object-cover -->
+                            <div class="relative aspect-[16/10] rounded-xl overflow-hidden bg-black/50 mb-6 group-hover:scale-[1.02] transition-transform duration-500">
+                                <!-- Simulated Hypercar Render via SVG & Vector Graphic Layer -->
+                                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10 opacity-70"></div>
+                                <img src="https://octane.rent/wp-content/uploads/2025/09/Koenigsegg_Jesko_1-600x400.webp" 
+                                     alt="Koenigsegg Hypercar" 
+                                     class="w-full h-full object-cover object-center filter brightness-90 contrast-110"
+                                     onerror="this.src='https://placehold.co/800x500/0f172a/eab308?text=Koenigsegg+Jesko'">
+                                
+                                <div class="absolute bottom-3 left-4 z-20">
+                                    <h3 class="text-2xl font-black text-white tracking-wider font-mono">JESKO ABSOLUT</h3>
+                                    <p class="text-xs text-amber-400">O Koenigsegg mais rápido já construído</p>
+                                </div>
+                            </div>
+
+                            <!-- Spec Highlights Inside Card -->
+                            <div class="space-y-3 font-mono text-sm">
+                                <div class="flex justify-between py-2 border-b border-white/10 text-gray-300">
+                                    <span>Motor V8 Twin-Turbo:</span>
+                                    <span class="text-amber-400 font-bold">5.0 Litros</span>
+                                </div>
+                                <div class="flex justify-between py-2 border-b border-white/10 text-gray-300">
+                                    <span>Transmissão:</span>
+                                    <span class="text-amber-400 font-bold">LST 9 Velocidades</span>
+                                </div>
+                                <div class="flex justify-between py-2 text-gray-300">
+                                    <span>Downforce Aerodinâmico:</span>
+                                    <span class="text-amber-400 font-bold">1400 KG</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- HYPERCAR SHOWCASE SECTION (DYNAMIC TAB & FILTER SWITCHER) -->
+    <section id="models" class="py-24 bg-black/90 relative border-t border-white/10 reveal-section">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <h2 class="text-xs font-mono uppercase tracking-[0.3em] text-amber-400">Frota Lendária</h2>
+                <p class="text-3xl sm:text-5xl font-black text-white tracking-tight">SELEÇÃO DE HYPERCARS</p>
+                <p class="text-gray-400 text-base font-light">
+                    Navegue entre os modelos icônicos. Alterne a seleção para visualizar especificações detalhadas e comparar métricas.
+                </p>
+            </div>
+
+            <!-- Responsive Interactive Model Tabs (Scrollable on small screens, flex on desktop) -->
+            <div class="flex justify-start sm:justify-center overflow-x-auto pb-4 mb-12 no-scrollbar gap-2 sm:gap-4">
+                <button onclick="switchCar('jesko')" id="tab-jesko" class="car-tab-btn active border-amber-500 bg-amber-500/20 text-amber-400 font-mono text-xs sm:text-sm px-5 py-3 rounded-xl border whitespace-nowrap transition-all duration-300">
+                    JESKO ABSOLUT
+                </button>
+                <button onclick="switchCar('gemera')" id="tab-gemera" class="car-tab-btn border-white/10 bg-white/5 text-gray-400 hover:text-white font-mono text-xs sm:text-sm px-5 py-3 rounded-xl border whitespace-nowrap transition-all duration-300">
+                    GEMERA
+                </button>
+                <button onclick="switchCar('regera')" id="tab-regera" class="car-tab-btn border-white/10 bg-white/5 text-gray-400 hover:text-white font-mono text-xs sm:text-sm px-5 py-3 rounded-xl border whitespace-nowrap transition-all duration-300">
+                    REGERA
+                </button>
+                <button onclick="switchCar('cc850')" id="tab-cc850" class="car-tab-btn border-white/10 bg-white/5 text-gray-400 hover:text-white font-mono text-xs sm:text-sm px-5 py-3 rounded-xl border whitespace-nowrap transition-all duration-300">
+                    CC850
+                </button>
+                <button onclick="switchCar('agera')" id="tab-agera" class="car-tab-btn border-white/10 bg-white/5 text-gray-400 hover:text-white font-mono text-xs sm:text-sm px-5 py-3 rounded-xl border whitespace-nowrap transition-all duration-300">
+                    AGERA RS
+                </button>
+            </div>
+
+            <!-- Dynamic Model Showcase Container -->
+            <div class="bg-cardBg rounded-3xl border border-white/10 p-6 sm:p-10 backdrop-blur-xl shadow-2xl relative overflow-hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    
+                    <!-- Dynamic Image Display -->
+                    <div class="lg:col-span-7 relative group">
+                        <div class="aspect-[16/9] rounded-2xl overflow-hidden bg-black/60 relative border border-white/10 shadow-inner">
+                            <img id="car-image" 
+                                 src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=1200&q=80" 
+                                 alt="Koenigsegg Model" 
+                                 class="w-full h-full object-cover transition-all duration-700 filter saturate-110">
+                            
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                            
+                            <div class="absolute bottom-6 left-6 right-6 flex justify-between items-end">
+                                <div>
+                                    <span id="car-tag" class="text-xs font-mono uppercase tracking-widest text-amber-400 bg-black/60 px-3 py-1 rounded-md border border-amber-500/30">Top Speed Focus</span>
+                                    <h3 id="car-title" class="text-3xl sm:text-4xl font-black text-white font-mono mt-2">JESKO ABSOLUT</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dynamic Spec Cards (Grid inside grid) -->
+                    <div class="lg:col-span-5 space-y-6">
+                        <p id="car-desc" class="text-gray-300 text-sm leading-relaxed font-light">
+                            O Jesko Absolut é a versão de alta velocidade máxima do Jesko. Projetado para atingir velocidades jamais vistas com arrasto aerodinâmico ultra-reduzido (Cd de apenas 0.278).
+                        </p>
+
+                        <!-- Dynamic Metrics Grid -->
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-black/40 p-4 rounded-xl border border-white/5">
+                                <span class="text-xs text-gray-400 font-mono block">Velocidade Máx.</span>
+                                <span id="car-speed" class="text-2xl font-black text-amber-400 font-mono">530+ km/h</span>
+                            </div>
+                            <div class="bg-black/40 p-4 rounded-xl border border-white/5">
+                                <span class="text-xs text-gray-400 font-mono block">Potência Total</span>
+                                <span id="car-power" class="text-2xl font-black text-amber-400 font-mono">1600 CV</span>
+                            </div>
+                            <div class="bg-black/40 p-4 rounded-xl border border-white/5">
+                                <span class="text-xs text-gray-400 font-mono block">Aceleração 0-100</span>
+                                <span id="car-accel" class="text-2xl font-black text-amber-400 font-mono">2.5s</span>
+                            </div>
+                            <div class="bg-black/40 p-4 rounded-xl border border-white/5">
+                                <span class="text-xs text-gray-400 font-mono block">Peso em Ordem</span>
+                                <span id="car-weight" class="text-2xl font-black text-amber-400 font-mono">1390 kg</span>
+                            </div>
+                        </div>
+
+                        <!-- Price Tag & Quote Action -->
+                        <div class="p-4 rounded-xl bg-gradient-to-r from-amber-500/10 to-yellow-600/10 border border-amber-500/30 flex items-center justify-between">
+                            <div>
+                                <span class="text-[10px] text-gray-400 font-mono uppercase block">Valor Estimado</span>
+                                <span id="car-price" class="text-xl font-bold text-white font-mono">US$ 3.400.000</span>
+                            </div>
+                            <button class="px-5 py-2.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-black font-extrabold text-xs uppercase tracking-wider transition-colors shadow-glow-gold">
+                                Interesse
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ENGINEERING HIGHLIGHTS SECTION -->
+    <section id="engineering" class="py-24 carbon-pattern relative reveal-section">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <h2 class="text-xs font-mono uppercase tracking-[0.3em] text-amber-400">Patentes Exclusivas</h2>
+                <p class="text-3xl sm:text-5xl font-black text-white tracking-tight">ENGENHARIA SEM LIMITES</p>
+                <p class="text-gray-400 text-base font-light">
+                    Soluções mecânicas e aerodinâmicas patenteadas criadas do zero na fábrica em Ängelholm, Suécia.
+                </p>
+            </div>
+
+            <!-- Responsive Cards Grid: 1 col on mobile, 2 on tablet, 3 on desktop -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Card 1 -->
+                <div class="reveal-card bg-cardBg border border-white/10 rounded-2xl p-8 hover:border-amber-500/50 transition-all duration-300 hover:-translate-y-2 group shadow-xl" style="--delay: 0;">
+                    <div class="w-14 h-14 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-gears"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3 group-hover:text-amber-400 transition-colors">Light Speed Transmission (LST)</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Transmissão de 9 velocidades e 7 embreagens sem volante de motor tradicional. Permite trocas instantâneas de qualquer marcha para qualquer marcha sem perda de torque.
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="reveal-card bg-cardBg border border-white/10 rounded-2xl p-8 hover:border-amber-500/50 transition-all duration-300 hover:-translate-y-2 group shadow-xl" style="--delay: 1;">
+                    <div class="w-14 h-14 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-atom"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3 group-hover:text-amber-400 transition-colors">Chassis Monocoque Carbono</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Fibra de carbono com estrutura Honeycomb de alumínio. Rigidez torcional de 65.000 Nm por grau com segurança passiva de nível de protótipos de Le Mans.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="reveal-card bg-cardBg border border-white/10 rounded-2xl p-8 hover:border-amber-500/50 transition-all duration-300 hover:-translate-y-2 group shadow-xl" style="--delay: 2;">
+                    <div class="w-14 h-14 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-wind"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3 group-hover:text-amber-400 transition-colors">Suspensão Triplex</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Terceiro amortecedor traseiro e dianteiro patenteado que anula o afundamento do chassi sob acelerações extremas de até 1600 CV de potência.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- INTERACTIVE PERFORMANCE SIMULATOR WIDGET -->
+    <section id="simulator" class="py-24 bg-black relative border-t border-white/10 reveal-section">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Controls Column -->
+                <div class="lg:col-span-6 space-y-6">
+                    <span class="text-xs font-mono uppercase tracking-[0.3em] text-amber-400">Ferramenta Interativa</span>
+                    <h2 class="text-3xl sm:text-4xl font-black text-white">SIMULADOR DE ACELERAÇÃO</h2>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Ajuste a potência do motor e o nível de carga aerodinâmica para calcular o tempo estimado de aceleração de 0 a 300 km/h.
+                    </p>
+
+                    <!-- Slider 1: Horsepower -->
+                    <div class="space-y-2 bg-cardBg p-5 rounded-2xl border border-white/10">
+                        <div class="flex justify-between items-center text-sm font-mono">
+                            <span class="text-gray-300">Potência do Motor:</span>
+                            <span id="hp-val" class="text-amber-400 font-bold">1200 CV</span>
+                        </div>
+                        <input id="hp-slider" type="range" min="800" max="1700" value="1200" step="50" 
+                               class="w-full h-2 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-amber-500" 
+                               oninput="updateSimulation()">
+                    </div>
+
+                    <!-- Slider 2: Weight -->
+                    <div class="space-y-2 bg-cardBg p-5 rounded-2xl border border-white/10">
+                        <div class="flex justify-between items-center text-sm font-mono">
+                            <span class="text-gray-300">Peso Total (kg):</span>
+                            <span id="weight-val" class="text-amber-400 font-bold">1350 kg</span>
+                        </div>
+                        <input id="weight-slider" type="range" min="1100" max="1600" value="1350" step="25" 
+                               class="w-full h-2 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-amber-500" 
+                               oninput="updateSimulation()">
+                    </div>
+
+                    <button onclick="runAccelerationAnim()" class="w-full py-4 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-600 text-black font-extrabold uppercase tracking-wider text-sm shadow-glow-gold hover:opacity-90 transition-opacity">
+                        <i class="fa-solid fa-play mr-2"></i> Iniciar Teste em Pista
+                    </button>
+                </div>
+
+                <!-- Live Simulation Output Box -->
+                <div class="lg:col-span-6 bg-cardBg border border-white/10 rounded-3xl p-8 backdrop-blur-xl relative">
+                    <h3 class="text-xs font-mono uppercase text-gray-400 tracking-wider mb-6">Métricas de Desempenho Calculadas</h3>
+                    
+                    <div class="space-y-6">
+                        <!-- Progress Bar for Speed -->
+                        <div>
+                            <div class="flex justify-between text-xs font-mono text-gray-400 mb-2">
+                                <span>Progresso da Pista (0 - 300 km/h)</span>
+                                <span id="anim-speed-text">0 km/h</span>
+                            </div>
+                            <div class="w-full h-4 bg-black rounded-full overflow-hidden border border-white/10 p-0.5">
+                                <div id="sim-progress-bar" class="h-full bg-gradient-to-r from-amber-500 to-yellow-400 rounded-full w-0 transition-all duration-75"></div>
+                            </div>
+                        </div>
+
+                        <!-- Result Counters -->
+                        <div class="grid grid-cols-2 gap-4 pt-4">
+                            <div class="bg-black/50 p-5 rounded-2xl border border-white/5 text-center">
+                                <span class="text-xs text-gray-400 font-mono block mb-1">0-100 km/h</span>
+                                <span id="res-0100" class="text-3xl font-black text-amber-400 font-mono">2.6s</span>
+                            </div>
+                            <div class="bg-black/50 p-5 rounded-2xl border border-white/5 text-center">
+                                <span class="text-xs text-gray-400 font-mono block mb-1">0-300 km/h</span>
+                                <span id="res-0300" class="text-3xl font-black text-amber-400 font-mono">11.2s</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-amber-500/10 border border-amber-500/20 p-4 rounded-xl text-center">
+                            <span class="text-xs text-amber-400 font-mono">Relação Peso-Potência: <strong id="res-ratio" class="text-white">1.12 kg/CV</strong></span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-black text-gray-400 border-t border-white/10 pt-16 pb-12 reveal-section">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                
+                <!-- Col 1: Brand Info -->
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-amber-500 flex items-center justify-center text-black font-black font-mono text-sm">K</div>
+                        <span class="text-lg font-black tracking-widest text-white font-mono">KOENIGSEGG</span>
+                    </div>
+                    <p class="text-xs text-gray-500 leading-relaxed">
+                        Koenigsegg Automotive AB — Ängelholm, Suécia. Criando os hypercars de produção mais rápidos e avançados do planeta.
+                    </p>
+                </div>
+
+                <!-- Col 2: Quick Links -->
+                <div>
+                    <h4 class="text-xs font-mono uppercase text-white tracking-widest mb-4">Modelos</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#models" onclick="switchCar('jesko')" class="hover:text-amber-400 transition-colors">Jesko Absolut</a></li>
+                        <li><a href="#models" onclick="switchCar('gemera')" class="hover:text-amber-400 transition-colors">Gemera HV8</a></li>
+                        <li><a href="#models" onclick="switchCar('regera')" class="hover:text-amber-400 transition-colors">Regera</a></li>
+                        <li><a href="#models" onclick="switchCar('cc850')" class="hover:text-amber-400 transition-colors">CC850</a></li>
+                        <li><a href="#models" onclick="switchCar('agera')" class="hover:text-amber-400 transition-colors">Agera RS</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Innovation -->
+                <div>
+                    <h4 class="text-xs font-mono uppercase text-white tracking-widest mb-4">Inovação</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#engineering" class="hover:text-amber-400 transition-colors">Light Speed Transmission</a></li>
+                        <li><a href="#engineering" class="hover:text-amber-400 transition-colors">Suspensão Triplex</a></li>
+                        <li><a href="#engineering" class="hover:text-amber-400 transition-colors">Chassis Carbono Monocoque</a></li>
+                        <li><a href="#engineering" class="hover:text-amber-400 transition-colors">Motores Freevalve</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Newsletter -->
+                <div>
+                    <h4 class="text-xs font-mono uppercase text-white tracking-widest mb-4">Boletim Exclusivo</h4>
+                    <p class="text-xs text-gray-500 mb-3">Receba novidades sobre lançamentos e recordes mundiais.</p>
+                    <form onsubmit="event.preventDefault(); showToast();" class="flex gap-2">
+                        <input type="email" placeholder="Seu e-mail..." required class="bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500 w-full">
+                        <button type="submit" class="bg-amber-500 hover:bg-amber-400 text-black px-4 py-2 rounded-lg font-bold text-xs">OK</button>
+                    </form>
+                </div>
+
+            </div>
+
+            <!-- Toast Container -->
+            <div id="toast" class="fixed bottom-6 right-6 bg-amber-500 text-black px-6 py-3 rounded-xl font-bold text-sm shadow-2xl opacity-0 pointer-events-none transition-opacity duration-300 z-50">
+                Inscrição confirmada com sucesso!
+            </div>
+
+            <div class="border-t border-white/5 pt-8 flex flex-col sm:flex-row justify-between items-center text-xs text-gray-600 gap-4">
+                <p>&copy; 2026 Koenigsegg Automotive AB. Todos os direitos reservados.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="hover:text-amber-400"><i class="fa-brands fa-instagram text-base"></i></a>
+                    <a href="#" class="hover:text-amber-400"><i class="fa-brands fa-youtube text-base"></i></a>
+                    <a href="#" class="hover:text-amber-400"><i class="fa-brands fa-x-twitter text-base"></i></a>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <script src="/static/script.js"></script>
+    <script>
+        /* Mobile Menu Drawer Toggle Logic */
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const iconOpen = document.getElementById('menu-icon-open');
+        const iconClose = document.getElementById('menu-icon-close');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+        if (menuBtn && mobileMenu && iconOpen && iconClose) {
+          menuBtn.addEventListener('click', () => {
+            const isHidden = mobileMenu.classList.contains('hidden');
+            if (isHidden) {
+                mobileMenu.classList.remove('hidden');
+                iconOpen.classList.add('hidden');
+                iconClose.classList.remove('hidden');
+            } else {
+                mobileMenu.classList.add('hidden');
+                iconOpen.classList.remove('hidden');
+                iconClose.classList.add('hidden');
+            }
+        });
+
+          mobileNavLinks.forEach(link => {
+              link.addEventListener('click', () => {
+                  mobileMenu.classList.add('hidden');
+                  iconOpen.classList.remove('hidden');
+                  iconClose.classList.add('hidden');
+              });
+          });
+        }
+
+        /* Dynamic Car Data Showcase System */
+        const carsData = {
+            jesko: {
+                title: "JESKO ABSOLUT",
+                tag: "Recordista de Velocidade",
+                desc: "O Jesko Absolut é projetado para atingir a maior velocidade máxima de qualquer carro de produção já feito, superando a barreira teórica dos 500 km/h com arrasto aerodinâmico reduzido.",
+                speed: "530+ km/h",
+                power: "1600 CV",
+                accel: "2.5s",
+                weight: "1390 kg",
+                price: "US$ 3.400.000",
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDS-p-nnqclAavPqep6F_2B_94sZINJbz4OHnxTIXGiqVXzvCNCL8JLt0&s=10"
+            },
+            gemera: {
+                title: "GEMERA HV8",
+                tag: "Mega-GT de 4 Lugares",
+                desc: "O primeiro Mega-GT de quatro lugares do mundo. Combina um motor V8 Twin-Turbo com motores elétricos Dark Matter produzindo insanos 2300 CV em um habitáculo de luxo executivo.",
+                speed: "400 km/h",
+                power: "2300 CV",
+                accel: "1.9s",
+                weight: "1850 kg",
+                price: "US$ 1.700.000",
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmU8xJQAyZJNqQ-WW-2KLXi1ZTzXKXGvfPonPriPAtsropMkRwUVTrM40&s=10"
+            },
+            regera: {
+                title: "REGERA",
+                tag: "Luxo Elétrico sem Marchas",
+                desc: "Pioneiro da tecnologia Koenigsegg Direct Drive (KDD), eliminando a caixa de câmbio tradicional em favor de acoplamento direto com 1500 CV e aceleração contínua sem interrupções.",
+                speed: "404 km/h",
+                power: "1500 CV",
+                accel: "2.8s",
+                weight: "1590 kg",
+                price: "US$ 2.000.000",
+                img: "file:///c%3A/Users/Usuario/Documents/html-css-project/img/regera/regera-background.webp"
+            },
+            cc850: {
+                title: "CC850",
+                tag: "Homenagem com Câmbio ESS",
+                desc: "Celebra os 20 anos do CC8S. Apresenta o câmbio ESS (Engage Shift System), que opera como uma transmissão manual seletiva de 6 marchas com embreagem real ou como automática de 9 marchas.",
+                speed: "450 km/h",
+                power: "1385 CV",
+                accel: "2.7s",
+                weight: "1385 kg",
+                price: "US$ 3.650.000",
+                img: "https://imgcdn.sayaratbay.com/large/gallery/exterior/135/2415/koenigsegg-cc850-front-medium-view-294760.jpg"
+            },
+            agera: {
+                title: "AGERA RS",
+                tag: "Lenda dos Recordes",
+                desc: "Detentor do recorde mundial homologado em vias públicas atingindo 447 km/h de média. Um ícone histórico que consagrou a Koenigsegg no topo da indústria automotiva.",
+                speed: "447 km/h",
+                power: "1360 CV",
+                accel: "2.8s",
+                weight: "1395 kg",
+                price: "US$ 2.500.000",
+                img: "https://gtspirit.com/wp-content/uploads/2017/03/Koenigsegg-Agera-RS-Gryphon-4.jpg"
+            }
+        };
+
+        function switchCar(key) {
+            const data = carsData[key];
+            if (!data) return;
+
+            // Update Tab Active Styling
+            document.querySelectorAll('.car-tab-btn').forEach(btn => {
+                btn.classList.remove('border-amber-500', 'bg-amber-500/20', 'text-amber-400');
+                btn.classList.add('border-white/10', 'bg-white/5', 'text-gray-400');
+            });
+
+            const activeBtn = document.getElementById(`tab-${key}`);
+            if (activeBtn) {
+                activeBtn.classList.remove('border-white/10', 'bg-white/5', 'text-gray-400');
+                activeBtn.classList.add('border-amber-500', 'bg-amber-500/20', 'text-amber-400');
+            }
+
+            // Smooth content update
+            const carImg = document.getElementById('car-image');
+            carImg.style.opacity = '0.3';
+
+            setTimeout(() => {
+                document.getElementById('car-title').innerText = data.title;
+                document.getElementById('car-tag').innerText = data.tag;
+                document.getElementById('car-desc').innerText = data.desc;
+                document.getElementById('car-speed').innerText = data.speed;
+                document.getElementById('car-power').innerText = data.power;
+                document.getElementById('car-accel').innerText = data.accel;
+                document.getElementById('car-weight').innerText = data.weight;
+                document.getElementById('car-price').innerText = data.price;
+                carImg.src = data.img;
+                carImg.style.opacity = '1';
+            }, 200);
+        }
+
+        /* Speed Simulator Logic */
+        function updateSimulation() {
+            const hp = parseInt(document.getElementById('hp-slider').value);
+            const weight = parseInt(document.getElementById('weight-slider').value);
+
+            document.getElementById('hp-val').innerText = hp + ' CV';
+            document.getElementById('weight-val').innerText = weight + ' kg';
+
+            const ratio = (weight / hp).toFixed(2);
+            document.getElementById('res-ratio').innerText = ratio + ' kg/CV';
+
+            // Calculate estimated times based on ratio
+            const time0100 = (ratio * 2.1).toFixed(1);
+            const time0300 = (ratio * 9.5).toFixed(1);
+
+            document.getElementById('res-0100').innerText = time0100 + 's';
+            document.getElementById('res-0300').innerText = time0300 + 's';
+        }
+
+        function runAccelerationAnim() {
+            const progressBar = document.getElementById('sim-progress-bar');
+            const speedText = document.getElementById('anim-speed-text');
+            
+            progressBar.style.width = '0%';
+            speedText.innerText = '0 km/h';
+
+            let speed = 0;
+            const interval = setInterval(() => {
+                speed += 6;
+                if (speed > 300) {
+                    speed = 300;
+                    clearInterval(interval);
+                }
+                const pct = (speed / 300) * 100;
+                progressBar.style.width = pct + '%';
+                speedText.innerText = speed + ' km/h';
+            }, 20);
+        }
+
+        /* Toast Feedback Function */
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.classList.remove('opacity-0', 'pointer-events-none');
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'pointer-events-none');
+            }, 3000);
+        }
+
+        // Initialize simulation defaults
+        updateSimulation();
+    </script>
 </body>
 </html>
