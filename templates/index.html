@@ -547,6 +547,45 @@
         </div>
     </footer>
 
+    <section class="py-20 bg-gradient-to-b from-black via-[#0f172a] to-black border-t border-white/10">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-cardBg rounded-3xl border border-white/10 p-6 sm:p-10 shadow-2xl backdrop-blur-xl">
+                <div class="text-center mb-8">
+                    <p class="text-xs font-mono uppercase tracking-[0.3em] text-amber-400">Sua opinião</p>
+                    <h2 class="mt-4 text-3xl sm:text-4xl font-black text-white tracking-tight">QUAL CARRO VOCÊ MAIS GOSTOU?</h2>
+                </div>
+
+                <form id="car-form" novalidate class="space-y-6">
+                    <div>
+                        <label for="car-select" class="block text-sm font-medium text-gray-300 mb-2">Escolha seu favorito</label>
+                        <select id="car-select" name="car" required class="w-full rounded-xl border border-white/10 bg-black/30 text-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition">
+                            <option value="" selected disabled>Selecione um modelo</option>
+                            <option value="Jesko Absolut">Jesko Absolut</option>
+                            <option value="Gemera">Gemera</option>
+                            <option value="Regera">Regera</option>
+                            <option value="CC850">CC850</option>
+                            <option value="Agera RS">Agera RS</option>
+                        </select>
+                        <p id="car-error" class="hidden mt-2 text-sm text-red-400">Por favor, selecione um carro.</p>
+                    </div>
+
+                    <div>
+                        <label for="car-message" class="block text-sm font-medium text-gray-300 mb-2">Por que ele chamou sua atenção?</label>
+                        <textarea id="car-message" name="message" rows="4" required minlength="10" placeholder="Conte o que mais te impressionou..." class="w-full rounded-xl border border-white/10 bg-black/30 text-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition resize-none"></textarea>
+                        <p id="message-error" class="hidden mt-2 text-sm text-red-400">Escreva pelo menos 10 caracteres.</p>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
+                        <button type="submit" class="w-full sm:w-auto px-8 py-3 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-600 text-black font-extrabold uppercase tracking-wider text-sm shadow-glow-gold hover:opacity-95 transition-opacity">
+                            Enviar resposta
+                        </button>
+                        <p id="form-success" class="hidden text-sm font-medium text-emerald-400">Resposta enviada com sucesso!</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
     <script src="/static/script.js"></script>
     <script>
         /* Mobile Menu Drawer Toggle Logic */
@@ -718,6 +757,54 @@
             setTimeout(() => {
                 toast.classList.add('opacity-0', 'pointer-events-none');
             }, 3000);
+        }
+
+        /* Favorite Car Form Validation */
+        const carForm = document.getElementById('car-form');
+        const carSelect = document.getElementById('car-select');
+        const carMessage = document.getElementById('car-message');
+        const carError = document.getElementById('car-error');
+        const messageError = document.getElementById('message-error');
+        const formSuccess = document.getElementById('form-success');
+
+        function validateFavoriteForm() {
+            let isValid = true;
+
+            if (!carSelect.value) {
+                carError.classList.remove('hidden');
+                carSelect.classList.add('border-red-500', 'focus:ring-red-500');
+                isValid = false;
+            } else {
+                carError.classList.add('hidden');
+                carSelect.classList.remove('border-red-500', 'focus:ring-red-500');
+            }
+
+            if (!carMessage.value.trim() || carMessage.value.trim().length < 10) {
+                messageError.classList.remove('hidden');
+                carMessage.classList.add('border-red-500', 'focus:ring-red-500');
+                isValid = false;
+            } else {
+                messageError.classList.add('hidden');
+                carMessage.classList.remove('border-red-500', 'focus:ring-red-500');
+            }
+
+            return isValid;
+        }
+
+        if (carForm) {
+            carForm.addEventListener('submit', (event) => {
+                event.preventDefault();
+
+                formSuccess.classList.add('hidden');
+
+                if (!validateFavoriteForm()) {
+                    return;
+                }
+
+                formSuccess.classList.remove('hidden');
+                carForm.reset();
+                showToast();
+            });
         }
 
         // Initialize simulation defaults
