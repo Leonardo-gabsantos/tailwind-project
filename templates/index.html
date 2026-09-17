@@ -261,11 +261,11 @@
 
             <!-- Responsive Interactive Model Tabs (Scrollable on small screens, flex on desktop) -->
             <div class="flex justify-start sm:justify-center overflow-x-auto pb-4 mb-12 no-scrollbar gap-2 sm:gap-4">
-                <button onclick="switchCar('jesko')" id="tab-jesko" class="car-tab-btn active border-amber-500 bg-amber-500/20 text-amber-400 font-mono text-xs sm:text-sm px-5 py-3 rounded-xl border whitespace-nowrap transition-all duration-300">
-                    JESKO ABSOLUT
+                <button onclick="switchCar('agera')" id="tab-agera" class="car-tab-btn active border-amber-500 bg-amber-500/20 text-amber-400 font-mono text-xs sm:text-sm px-5 py-3 rounded-xl border whitespace-nowrap transition-all duration-300">
+                    AGERA RS
                 </button>
-                <button onclick="switchCar('gemera')" id="tab-gemera" class="car-tab-btn border-white/10 bg-white/5 text-gray-400 hover:text-white font-mono text-xs sm:text-sm px-5 py-3 rounded-xl border whitespace-nowrap transition-all duration-300">
-                    GEMERA
+                <button onclick="switchCar('jesko')" id="tab-jesko" class="car-tab-btn border-white/10 bg-white/5 text-gray-400 hover:text-white font-mono text-xs sm:text-sm px-5 py-3 rounded-xl border whitespace-nowrap transition-all duration-300">
+                    JESKO ABSOLUT
                 </button>
                 <button onclick="switchCar('regera')" id="tab-regera" class="car-tab-btn border-white/10 bg-white/5 text-gray-400 hover:text-white font-mono text-xs sm:text-sm px-5 py-3 rounded-xl border whitespace-nowrap transition-all duration-300">
                     REGERA
@@ -273,8 +273,8 @@
                 <button onclick="switchCar('cc850')" id="tab-cc850" class="car-tab-btn border-white/10 bg-white/5 text-gray-400 hover:text-white font-mono text-xs sm:text-sm px-5 py-3 rounded-xl border whitespace-nowrap transition-all duration-300">
                     CC850
                 </button>
-                <button onclick="switchCar('agera')" id="tab-agera" class="car-tab-btn border-white/10 bg-white/5 text-gray-400 hover:text-white font-mono text-xs sm:text-sm px-5 py-3 rounded-xl border whitespace-nowrap transition-all duration-300">
-                    AGERA RS
+                <button onclick="switchCar('gemera')" id="tab-gemera" class="car-tab-btn border-white/10 bg-white/5 text-gray-400 hover:text-white font-mono text-xs sm:text-sm px-5 py-3 rounded-xl border whitespace-nowrap transition-all duration-300">
+                    GEMERA
                 </button>
             </div>
 
@@ -285,8 +285,16 @@
                     <!-- Dynamic Image Display -->
                     <div class="lg:col-span-7 relative group">
                         <div class="aspect-[16/9] rounded-2xl overflow-hidden bg-black/60 relative border border-white/10 shadow-inner">
+                            <button id="prev-car" type="button" aria-label="Carro anterior" class="absolute left-4 top-1/2 -translate-y-1/2 z-20 flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-black/45 text-xl text-white shadow-lg backdrop-blur-sm transition hover:border-amber-400 hover:text-amber-400 hover:bg-black/60">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </button>
+
+                            <button id="next-car" type="button" aria-label="Próximo carro" class="absolute right-4 top-1/2 -translate-y-1/2 z-20 flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-black/45 text-xl text-white shadow-lg backdrop-blur-sm transition hover:border-amber-400 hover:text-amber-400 hover:bg-black/60">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </button>
+
                             <img id="car-image" 
-                                 src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=1200&q=80" 
+                                 src="https://static0.carbuzzimages.com/wordpress/wp-content/uploads/2024/07/koenigsegg-jesko-absolut.jpg?q=70&fit=crop&w=1600&h=900&dpr=1" 
                                  alt="Koenigsegg Model" 
                                  class="w-full h-full object-cover transition-all duration-700 filter saturate-110">
                             
@@ -327,15 +335,12 @@
                             </div>
                         </div>
 
-                        <!-- Price Tag & Quote Action -->
+                        <!-- Price Tag -->
                         <div class="p-4 rounded-xl bg-gradient-to-r from-amber-500/10 to-yellow-600/10 border border-amber-500/30 flex items-center justify-between">
                             <div>
                                 <span class="text-[10px] text-gray-400 font-mono uppercase block">Valor Estimado</span>
                                 <span id="car-price" class="text-xl font-bold text-white font-mono">US$ 3.400.000</span>
                             </div>
-                            <button class="px-5 py-2.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-black font-extrabold text-xs uppercase tracking-wider transition-colors shadow-glow-gold">
-                                Interesse
-                            </button>
                         </div>
                     </div>
 
@@ -603,7 +608,7 @@
 
     <section class="py-20 bg-gradient-to-b from-black via-[#0f172a] to-black border-t border-white/10">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="bg-cardBg rounded-3xl border border-white/10 p-6 sm:p-10 shadow-2xl backdrop-blur-xl">
+            <div class="rounded-3xl border border-white/10 bg-[#070b12]/90 p-6 sm:p-10 shadow-[0_0_40px_rgba(251,191,36,0.08)] backdrop-blur-xl">
                 <div class="text-center mb-8">
                     <p class="text-xs font-mono uppercase tracking-[0.3em] text-amber-400">Sua opinião</p>
                     <h2 class="mt-4 text-3xl sm:text-4xl font-black text-white tracking-tight">QUAL CARRO VOCÊ MAIS GOSTOU?</h2>
@@ -612,20 +617,20 @@
                 <form id="car-form" novalidate class="space-y-6">
                     <div>
                         <label for="car-select" class="block text-sm font-medium text-gray-300 mb-2">Escolha seu favorito</label>
-                        <select id="car-select" name="car" required class="w-full rounded-xl border border-white/10 bg-black/30 text-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition">
-                            <option value="" selected disabled>Selecione um modelo</option>
-                            <option value="Jesko Absolut">Jesko Absolut</option>
-                            <option value="Gemera">Gemera</option>
-                            <option value="Regera">Regera</option>
-                            <option value="CC850">CC850</option>
-                            <option value="Agera RS">Agera RS</option>
+                        <select id="car-select" name="car" required class="w-full rounded-xl border border-amber-500/40 bg-[#0b1017] text-white px-4 py-3 shadow-inner shadow-black/30 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition appearance-none text-base" style="color-scheme: dark;">
+                            <option value="" selected disabled class="bg-[#0b1017] text-white">Selecione um modelo</option>
+                            <option value="Jesko Absolut" class="bg-[#0b1017] text-white">Jesko Absolut</option>
+                            <option value="Gemera" class="bg-[#0b1017] text-white">Gemera</option>
+                            <option value="Regera" class="bg-[#0b1017] text-white">Regera</option>
+                            <option value="CC850" class="bg-[#0b1017] text-white">CC850</option>
+                            <option value="Agera RS" class="bg-[#0b1017] text-white">Agera RS</option>
                         </select>
                         <p id="car-error" class="hidden mt-2 text-sm text-red-400">Por favor, selecione um carro.</p>
                     </div>
 
                     <div>
                         <label for="car-message" class="block text-sm font-medium text-gray-300 mb-2">Por que ele chamou sua atenção?</label>
-                        <textarea id="car-message" name="message" rows="4" required minlength="10" placeholder="Conte o que mais te impressionou..." class="w-full rounded-xl border border-white/10 bg-black/30 text-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition resize-none"></textarea>
+                        <textarea id="car-message" name="message" rows="4" required minlength="10" placeholder="Conte o que mais te impressionou..." class="w-full rounded-xl border border-amber-500/30 bg-[#0b1017] text-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition resize-none shadow-inner shadow-black/25"></textarea>
                         <p id="message-error" class="hidden mt-2 text-sm text-red-400">Escreva pelo menos 10 caracteres.</p>
                     </div>
 
@@ -683,7 +688,7 @@
                 accel: "2.5s",
                 weight: "1390 kg",
                 price: "US$ 3.400.000",
-                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDS-p-nnqclAavPqep6F_2B_94sZINJbz4OHnxTIXGiqVXzvCNCL8JLt0&s=10"
+                img: "https://quatrorodas.abril.com.br/wp-content/uploads/2024/07/Koenigsegg-Jesko-Absolut-batendo-recorde-de-aceleracao-de-0-a-400-km-h-2.jpg?quality=70&strip=info&w=720&crop=1"
             },
             gemera: {
                 title: "GEMERA HV8",
@@ -705,7 +710,7 @@
                 accel: "2.8s",
                 weight: "1590 kg",
                 price: "US$ 2.000.000",
-                img: "file:///c%3A/Users/Usuario/Documents/html-css-project/img/regera/regera-background.webp"
+                img: "https://www.topgear.com/sites/default/files/2023/06/a931c4d857c4e52e_org.jpg"
             },
             cc850: {
                 title: "CC850",
@@ -727,13 +732,18 @@
                 accel: "2.8s",
                 weight: "1395 kg",
                 price: "US$ 2.500.000",
-                img: "https://gtspirit.com/wp-content/uploads/2017/03/Koenigsegg-Agera-RS-Gryphon-4.jpg"
+                img: "https://motorshow.com.br/wp-content/uploads/sites/2/2020/06/koenigsegg-agera-rsn-1.jpg"
             }
         };
+
+        const carOrder = ["agera", "jesko", "regera", "cc850", "gemera"];
+        let currentCarIndex = 0;
 
         function switchCar(key) {
             const data = carsData[key];
             if (!data) return;
+
+            currentCarIndex = carOrder.indexOf(key);
 
             // Update Tab Active Styling
             document.querySelectorAll('.car-tab-btn').forEach(btn => {
@@ -760,10 +770,74 @@
                 document.getElementById('car-accel').innerText = data.accel;
                 document.getElementById('car-weight').innerText = data.weight;
                 document.getElementById('car-price').innerText = data.price;
+
+                carImg.onerror = function() {
+                    this.src = 'https://www.topgear.com/sites/default/files/2023/06/a931c4d857c4e52e_org.jpg';
+                    this.onerror = null;
+                };
+
                 carImg.src = data.img;
                 carImg.style.opacity = '1';
             }, 200);
         }
+
+        function navigateCar(direction) {
+            const nextIndex = (currentCarIndex + direction + carOrder.length) % carOrder.length;
+            switchCar(carOrder[nextIndex]);
+        }
+
+        let autoPlayTimer = null;
+
+        function startAutoPlay() {
+            stopAutoPlay();
+            autoPlayTimer = setInterval(() => {
+                navigateCar(1);
+            }, 5000);
+        }
+
+        function stopAutoPlay() {
+            if (autoPlayTimer) {
+                clearInterval(autoPlayTimer);
+                autoPlayTimer = null;
+            }
+        }
+
+        document.getElementById('prev-car')?.addEventListener('click', () => {
+            navigateCar(-1);
+            startAutoPlay();
+        });
+
+        document.getElementById('next-car')?.addEventListener('click', () => {
+            navigateCar(1);
+            startAutoPlay();
+        });
+
+        const carouselStage = document.getElementById('carousel-stage');
+        if (carouselStage) {
+            carouselStage.addEventListener('mouseenter', stopAutoPlay);
+            carouselStage.addEventListener('mouseleave', startAutoPlay);
+
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            carouselStage.addEventListener('touchstart', (event) => {
+                touchStartX = event.changedTouches[0].screenX;
+                stopAutoPlay();
+            }, { passive: true });
+
+            carouselStage.addEventListener('touchend', (event) => {
+                touchEndX = event.changedTouches[0].screenX;
+                const diff = touchStartX - touchEndX;
+
+                if (Math.abs(diff) > 50) {
+                    navigateCar(diff > 0 ? 1 : -1);
+                }
+
+                startAutoPlay();
+            }, { passive: true });
+        }
+
+        startAutoPlay();
 
         /* Speed Simulator Logic */
         function updateSimulation() {
