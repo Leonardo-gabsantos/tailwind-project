@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Koenigsegg | Home</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            carbon: '#0b0f17',
+            gold: '#facc15'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background: #0b0f17; font-family: Inter, sans-serif; }
+    .carbon { background-color: #0b0d12; background-image: radial-gradient(rgba(234,179,8,.08) 1px, transparent 0), linear-gradient(45deg,#11151f 25%,transparent 25%,transparent 75%,#11151f 75%); background-size: 30px 30px, 10px 10px; }
+  </style>
+</head>
+<body class="text-gray-100 min-h-screen carbon">
+  <header class="sticky top-0 z-20 border-b border-white/10 bg-black/80 backdrop-blur-xl">
+    <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
+      <a href="/" class="font-black tracking-[.25em] font-mono text-white">KOENIGSEGG</a>
+      <nav class="hidden md:flex gap-1 text-sm">
+        <a href="/models" class="px-4 py-2 text-gray-300 hover:text-yellow-400">HIPERCARROS</a>
+        <a href="/engineering" class="px-4 py-2 text-gray-300 hover:text-yellow-400">ENGENHARIA</a>
+        <a href="/simulator" class="px-4 py-2 text-gray-300 hover:text-yellow-400">SIMULADOR</a>
+        <a href="/heritage" class="px-4 py-2 text-gray-300 hover:text-yellow-400">HISTÓRIA</a>
+      </nav>
+      <a href="/models" class="text-sm text-yellow-400">VER MODELOS</a>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 py-20">
+    <section class="text-center max-w-4xl mx-auto">
+      <p class="text-xs font-mono uppercase tracking-[.3em] text-yellow-400">Engenharia sueca absoluta</p>
+      <h1 class="mt-6 text-4xl sm:text-6xl font-black leading-tight">REDEFININDO O<br><span class="text-yellow-400">IMPOSSÍVEL</span></h1>
+      <p class="mt-6 text-gray-300 text-lg leading-relaxed">
+        Koenigsegg combina velocidade extrema, engenharia inovadora e design radical para criar hipercarros que desafiam as próprias regras do desempenho.
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        <a href="/models" class="rounded-xl bg-yellow-500 px-6 py-3 font-bold text-black hover:bg-yellow-400">Ver hipercarros</a>
+        <a href="/engineering" class="rounded-xl border border-white/15 px-6 py-3 hover:border-yellow-400">Explorar engenharia</a>
+      </div>
+    </section>
+
+    <section class="mt-16 grid md:grid-cols-3 gap-6">
+      <div class="rounded-2xl border border-white/10 bg-black/50 p-6">
+        <p class="text-xs font-mono uppercase tracking-[.3em] text-yellow-400">Vel. máxima</p>
+        <h2 class="mt-4 text-3xl font-black">530+</h2>
+        <p class="mt-2 text-gray-400">km/h em modelos de referência</p>
+      </div>
+      <div class="rounded-2xl border border-white/10 bg-black/50 p-6">
+        <p class="text-xs font-mono uppercase tracking-[.3em] text-yellow-400">Potência</p>
+        <h2 class="mt-4 text-3xl font-black">2300</h2>
+        <p class="mt-2 text-gray-400">CV em configurações de última geração</p>
+      </div>
+      <div class="rounded-2xl border border-white/10 bg-black/50 p-6">
+        <p class="text-xs font-mono uppercase tracking-[.3em] text-yellow-400">Aceleração</p>
+        <h2 class="mt-4 text-3xl font-black">1.9s</h2>
+        <p class="mt-2 text-gray-400">até 100 km/h em alguns modelos</p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
