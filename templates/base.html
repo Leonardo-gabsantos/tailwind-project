@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Koenigsegg{% endblock %}</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            carbon: '#0b0f17',
+            gold: '#facc15'
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body { font-family: Inter, sans-serif; background: #0b0f17; }
+    .carbon { background-color: #0b0d12; background-image: radial-gradient(rgba(234,179,8,.08) 1px, transparent 0), linear-gradient(45deg,#11151f 25%,transparent 25%,transparent 75%,#11151f 75%); background-size: 30px 30px, 10px 10px; }
+    .active { color: #facc15; border-color: #facc15; background: rgba(234,179,8,.12); }
+    input[type=range] { accent-color: #facc15; }
+  </style>
+</head>
+<body class="text-gray-100 min-h-screen flex flex-col">
+  <header class="sticky top-0 z-20 border-b border-white/10 bg-black/80 backdrop-blur-xl">
+    <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
+      <a href="/" class="font-black tracking-[.25em] font-mono text-white">KOENIGSEGG</a>
+      <nav class="hidden md:flex gap-1 text-sm" aria-label="Navegação principal">
+        <a href="/models" class="rounded-lg border px-4 py-2 {% if request.path == '/models' %}active{% else %}border-transparent text-gray-300 hover:text-yellow-400{% endif %}">HIPERCARROS</a>
+        <a href="/engineering" class="rounded-lg border px-4 py-2 {% if request.path == '/engineering' %}active{% else %}border-transparent text-gray-300 hover:text-yellow-400{% endif %}">ENGENHARIA</a>
+        <a href="/simulator" class="rounded-lg border px-4 py-2 {% if request.path == '/simulator' %}active{% else %}border-transparent text-gray-300 hover:text-yellow-400{% endif %}">SIMULADOR</a>
+        <a href="/heritage" class="rounded-lg border px-4 py-2 {% if request.path == '/heritage' %}active{% else %}border-transparent text-gray-300 hover:text-yellow-400{% endif %}">HISTÓRIA</a>
+      </nav>
+      <a href="/" class="text-sm text-yellow-400 hover:text-white"><i class="fa-solid fa-arrow-left mr-2"></i>Início</a>
+    </div>
+  </header>
+  <main class="flex-grow">
+    {% block content %}{% endblock %}
+  </main>
+  <footer class="border-t border-white/10 bg-black/60 py-6 text-center text-sm text-gray-400">
+    <p>Leonardo Gabriel Santos</p>
+    <p class="mt-1">Atividade 3 - Desenvolvimento Web / AWS EC2</p>
+  </footer>
+  {% block scripts %}{% endblock %}
+</body>
+</html>
