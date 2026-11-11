@@ -1,6 +1,24 @@
+import os
+
+import pymysql
+from dotenv import load_dotenv
 from flask import Flask, redirect, render_template, url_for
+from flask_sqlalchemy import SQLAlchemy
+
+pymysql.install_as_MySQLdb()
+
+load_dotenv()
 
 app = Flask(__name__)
+
+database_url = os.getenv('DATABASE_URL')
+if not database_url:
+    raise RuntimeError('A variável de ambiente DATABASE_URL não foi definida.')
+
+app.config['SQLALCHEMY_DATABASE_URI'] = database_url
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+db = SQLAlchemy(app)
 
 
 @app.route('/')
