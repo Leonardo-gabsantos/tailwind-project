@@ -2,8 +2,9 @@ import os
 
 import pymysql
 from dotenv import load_dotenv
-from flask import Flask, redirect, render_template, url_for
+from flask import Flask, abort, redirect, render_template, request, url_for
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import text
 
 pymysql.install_as_MySQLdb()
 
@@ -24,6 +25,28 @@ db = SQLAlchemy(app)
 @app.route('/')
 def index():
     return render_template('index.html')
+
+
+@app.route('/submit', methods=['POST'])
+def submit():
+    fields = {
+        'nome': request.form.get('nome', '').strip(),
+        'email': request.form.get('email', '').strip(),
+        'modelo': request.form.get('modelo', '').strip(),
+        'motivo': request.form.get('motivo', '').strip(),
+    }
+    if not all(fields.values()):
+        abort(400, description='Todos os campos são obrigatórios.')
+
+    db.session.execute(
+        text(
+            'INSERT INTO resposta (nome, email, modelo, motivo) '
+            'VALUES (:nome, :email, :modelo, :motivo)'
+        ),
+        fields,
+    )
+    db.session.commit()
+    return redirect(url_for('index'))
 
 
 @app.route('/index')

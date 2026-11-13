@@ -548,11 +548,11 @@
                     <h2 class="mt-4 text-3xl sm:text-4xl font-black text-white tracking-tight">QUAL CARRO VOCÊ MAIS GOSTOU?</h2>
                 </div>
 
-                <form id="car-form" novalidate class="space-y-6">
+                <form id="car-form" action="/submit" method="POST" class="space-y-6">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
                             <label for="user-name" class="block text-sm font-medium text-gray-300 mb-2">Nome</label>
-                            <input id="user-name" name="name" type="text" required placeholder="Seu nome" class="w-full rounded-xl border border-amber-500/30 bg-[#0b1017] text-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition shadow-inner shadow-black/25">
+                            <input id="user-name" name="nome" type="text" required placeholder="Seu nome" class="w-full rounded-xl border border-amber-500/30 bg-[#0b1017] text-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition shadow-inner shadow-black/25">
                         </div>
 
                         <div>
@@ -563,7 +563,7 @@
 
                     <div>
                         <label for="car-select" class="block text-sm font-medium text-gray-300 mb-2">Escolha seu favorito</label>
-                        <select id="car-select" name="car" required class="w-full rounded-xl border border-amber-500/40 bg-[#0b1017] text-white px-4 py-3 shadow-inner shadow-black/30 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition appearance-none text-base" style="color-scheme: dark;">
+                        <select id="car-select" name="modelo" required class="w-full rounded-xl border border-amber-500/40 bg-[#0b1017] text-white px-4 py-3 shadow-inner shadow-black/30 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition appearance-none text-base" style="color-scheme: dark;">
                             <option value="" selected disabled class="bg-[#0b1017] text-white">Selecione um modelo</option>
                             <option value="Jesko Absolut" class="bg-[#0b1017] text-white">Jesko Absolut</option>
                             <option value="Gemera" class="bg-[#0b1017] text-white">Gemera</option>
@@ -576,7 +576,7 @@
 
                     <div>
                         <label for="car-message" class="block text-sm font-medium text-gray-300 mb-2">Por que ele chamou sua atenção?</label>
-                        <textarea id="car-message" name="message" rows="4" required minlength="10" placeholder="Conte o que mais te impressionou..." class="w-full rounded-xl border border-amber-500/30 bg-[#0b1017] text-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition resize-none shadow-inner shadow-black/25"></textarea>
+                        <textarea id="car-message" name="motivo" rows="4" required minlength="10" placeholder="Conte o que mais te impressionou..." class="w-full rounded-xl border border-amber-500/30 bg-[#0b1017] text-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition resize-none shadow-inner shadow-black/25"></textarea>
                         <p id="message-error" class="hidden mt-2 text-sm text-red-400">Escreva pelo menos 10 caracteres.</p>
                     </div>
 
@@ -584,7 +584,6 @@
                         <button type="submit" class="w-full sm:w-auto px-8 py-3 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-600 text-black font-extrabold uppercase tracking-wider text-sm shadow-glow-gold hover:opacity-95 transition-opacity">
                             Enviar resposta
                         </button>
-                        <p id="form-success" class="hidden text-sm font-medium text-emerald-400">Resposta enviada com sucesso!</p>
                     </div>
                 </form>
             </div>
@@ -908,8 +907,6 @@
         const carMessage = document.getElementById('car-message');
         const carError = document.getElementById('car-error');
         const messageError = document.getElementById('message-error');
-        const formSuccess = document.getElementById('form-success');
-
         function validateFavoriteForm() {
             let isValid = true;
 
@@ -936,17 +933,9 @@
 
         if (carForm) {
             carForm.addEventListener('submit', (event) => {
-                event.preventDefault();
-
-                formSuccess.classList.add('hidden');
-
                 if (!validateFavoriteForm()) {
-                    return;
+                    event.preventDefault();
                 }
-
-                formSuccess.classList.remove('hidden');
-                carForm.reset();
-                showToast();
             });
         }
 
