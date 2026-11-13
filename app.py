@@ -49,6 +49,18 @@ def submit():
     return redirect(url_for('index'))
 
 
+@app.route('/listar', methods=['GET'])
+def listar():
+    result = db.session.execute(
+        text(
+            'SELECT id, nome, email, modelo, motivo '
+            'FROM resposta ORDER BY id'
+        )
+    )
+    respostas = result.mappings().all()
+    return render_template('listar.html', respostas=respostas)
+
+
 @app.route('/index')
 def index_alias():
     return redirect(url_for('index'))
