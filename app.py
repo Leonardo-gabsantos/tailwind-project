@@ -1,12 +1,9 @@
 import os
+from urllib.parse import unquote, urlsplit
 
 import pymysql
 from dotenv import load_dotenv
 from flask import Flask, abort, redirect, render_template, request, url_for
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import text
-
-pymysql.install_as_MySQLdb()
 
 load_dotenv()
 
@@ -16,10 +13,26 @@ database_url = os.getenv('DATABASE_URL')
 if not database_url:
     raise RuntimeError('A variável de ambiente DATABASE_URL não foi definida.')
 
-app.config['SQLALCHEMY_DATABASE_URI'] = database_url
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+database = urlsplit(database_url)
+if database.scheme not in {'mysql', 'mysql+pymysql'} or not database.hostname:
+    raise RuntimeError('DATABASE_URL deve usar o formato mysql:// ou mysql+pymysql://.')
 
-db = SQLAlchemy(app)
+database_name = unquote(database.path.lstrip('/'))
+if not database_name:
+    raise RuntimeError('DATABASE_URL deve informar o nome do banco de dados.')
+
+database_config = {
+    'host': database.hostname,
+    'port': database.port or 3306,
+    'user': unquote(database.username or ''),
+    'password': unquote(database.password or ''),
+    'database': database_name,
+    'charset': 'utf8mb4',
+}
+
+
+def get_db_connection():
+    return pymysql.connect(**database_config)
 
 
 @app.route('/')
@@ -38,26 +51,26 @@ def submit():
     if not all(fields.values()):
         abort(400, description='Todos os campos são obrigatórios.')
 
-    db.session.execute(
-        text(
-            'INSERT INTO resposta (nome, email, modelo, motivo) '
-            'VALUES (:nome, :email, :modelo, :motivo)'
-        ),
-        fields,
-    )
-    db.session.commit()
+    with get_db_connection() as connection:
+        with connection.cursor() as cursor:
+            cursor.execute(
+                'INSERT INTO resposta (nome, email, modelo, motivo) '
+                'VALUES (%(nome)s, %(email)s, %(modelo)s, %(motivo)s)',
+                fields,
+            )
+        connection.commit()
     return redirect(url_for('index'))
 
 
 @app.route('/listar', methods=['GET'])
 def listar():
-    result = db.session.execute(
-        text(
-            'SELECT id, nome, email, modelo, motivo '
-            'FROM resposta ORDER BY id'
-        )
-    )
-    respostas = result.mappings().all()
+    with get_db_connection() as connection:
+        with connection.cursor(pymysql.cursors.DictCursor) as cursor:
+            cursor.execute(
+                'SELECT id, nome, email, modelo, motivo '
+                'FROM resposta ORDER BY id'
+            )
+            respostas = cursor.fetchall()
     return render_template('listar.html', respostas=respostas)
 
 
